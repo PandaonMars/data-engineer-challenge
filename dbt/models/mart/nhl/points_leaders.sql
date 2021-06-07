@@ -8,7 +8,7 @@ from
 		team_name
 		,full_name
 		,points
-		,row_number() OVER (PARTITION BY team_name order by points desc) as rank
+		,rank() OVER (PARTITION BY team_name order by points desc) as rank
 	from {{ ref('nhl_players') }}
 	where points > 0 
 ) as base
